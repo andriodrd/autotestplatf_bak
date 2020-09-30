@@ -1,17 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta http-equiv="content-type" content="text/html"; charset="UTF-8"/>
-    <title>Login</title>
+    <title>AutotestPlat</title>
+    <link href="/static/css/style1.css" rel="stylesheet" type="text/css" media="all"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/css/supersized.css">
+    <!-- -->
+    <script>var __links = document.querySelectorAll('a');
+
+    function __linkClick(e) {
+        parent.window.postMessage(this.href, '*');
+    };
+    for (var i = 0, l = __links.length; i < l; i++) {
+        if (__links[i].getAttribute('data-t') == '_blank') {
+            __links[i].addEventListener('click', __linkClick, false);
+        }
+    }</script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script>$(document).ready(function (c) {
+        $('.alert-close').on('click', function (c) {
+            $('.message').fadeOut('slow', function (c) {
+                $('.message').remove();
+            });
+        });
+    });
+    </script>
 </head>
-<body>
-<h1>login</h1>
-<form method="post" action="/login/">
-    {% csrf_token %}
-    <br><input name="username" type="text" placeholder="username">
-    <br><input name="password" type="password" placeholder="password">
-    {{ error }}<br>
-<br><button id ='submit' type="submit">submit</button>
-</form>
+<body style="overflow-y: hidden">
+<!-- contact-form -->
+<div class="message warning">
+    <div class="inset">
+        <div class="login-head">
+            <h1 style="text-align: center">自动化测试平台</h1>
+            <div class="alert-close"></div>
+        </div>
+        <form method="post" action="/login/">
+            {% csrf_token %}
+            <li>
+                <input name="username" type="text" class="text" value="Username" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = 'Username';}"><a href="#" class=" icon user"></a>
+            </li>
+            <div class="clear"></div>
+            <li>
+                <input name="password" type="password" value="Password" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = 'Password';}"> <a href="#" class="icon lock"></a>
+            </li>
+            <div class="clear"></div>
+            {{error}}
+            <br>
+            <input type="checkbox" name="remember" value="1"><h>remember me</h>
+            <div class="submit">
+                <input type="submit"  value="Sign in">
+                <h4><a href="#">Lost your Password ?</a></h4>
+                <div class="clear"></div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<!--- footer --->
+<div class="footer">
+    <p>Copyright &copy; 2020.</p>
+</div>
+<div style="display:none">
+    <script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script>
+</div>
+   <script src="/static/js/jquery-1.8.2.min.js"></script>
+    <script src="/static/js/supersized.3.2.7.min.js"></script>
+    <script src="/static/js/supersized-init.js"></script>
 </body>
 </html>

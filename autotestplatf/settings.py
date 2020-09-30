@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&yix25!@+w*#0yda(2^fv$on=0d=!-#go!+q&e^vz-z4&3j7w%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True  # 部署到生成环境需要设置为false
 
 ALLOWED_HOSTS = []
+# 允许的一个ip地址的访问列表
 
 
 # Application definition
@@ -35,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    # 注销掉则自动登录会失效 服务器第一次响应浏览器请求时，会生成一个sessionid，返回给浏览器，浏览器再次请求时，会带上coolie中的sessionid,服务器通过查询sessionid，在
+    # 数据库中查询是哪个用户，取出信息，返回给浏览器，django就是通过cookie和session机制完成了自动登录
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apitest',
@@ -126,3 +130,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+  os.path.join(BASE_DIR,'static')
+]
